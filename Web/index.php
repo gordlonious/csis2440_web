@@ -6,12 +6,12 @@
         </style>
     </head>
     <body>
-        <div class="top_container">
-            <img src="anarchy.jpg" id="anarchyjpg">
-        </div>
-        <div class="flex_container">
+        <div class="nav_container">
             <nav>
                 <ul>
+                    <a href="ip address?" id="home">
+                        <img src="home.png">
+                    </a>
                     <li>
                         <a href="link to assignment 1">Assignment 1</a>
                     </li>
@@ -25,7 +25,7 @@
             </nav>
             <div class="php_container">
                 <?php
-                    echo "<p> HELLO WORLD </p>";
+                    echo "<p>PHP HELLO WORLD </p>";
                     echo date('D F Y');
                 ?>
             </div>
