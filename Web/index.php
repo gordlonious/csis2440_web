@@ -14,13 +14,19 @@
                             <img src="home.png">
                         </a>
                         <li>
+                            <a href="ecommerce">E-Commerce</a>
+                        </li>
+                        <li>
+                            <a href="../CE01/index.php">Class Exercise #1</a>
+                        </li>
+                        <li>
                             <a href="link to assignment 1">Assignment 1</a>
                         </li>
                         <li>
-                            <a href="2">Assignment 2</a>
+                            <a href="link to assignment 2">Assignment 2</a>
                         </li>
                         <li>
-                            <a href="ecommerce">E-Commerce</a>
+                            <a href="link to assignment 2">Assignment 3</a>
                         </li>
                     </ul>
                 </nav>
