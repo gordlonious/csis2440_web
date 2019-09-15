@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        18-236-74-21.us-west-2.compute.amazonaws.com
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
