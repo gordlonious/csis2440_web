@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <?php
-
+$name = $_POST['HeroName'];
+$race = $_POST['Race'];
+$class = $_POST['Class'];
+$age = $_POST['Age'];
+$gender = $_POST['Gender'];
+$kingdom = $_POST['KingdomName'];
 ?>
 <html>
     <head>
@@ -18,7 +23,7 @@
                 height: 250px;
                 padding: 3pt;
             }
-            p{
+            p {
                 margin-left: 8px;
             }
         </style>
@@ -31,14 +36,43 @@
             </div>
             <div class="row">
                  <div class="col-md-3">
-                    <?php
-                    //print random stats here
-                    ?>
+                    <p>
+                        <b>Race:  </b>
+                        <?php
+                        print($race);
+                        ?>
+                    </p>
+                    <p>
+                        <b>Class:  </b>
+                        <?php
+                        print($class);
+                        ?>
+                    </p>
+                    <p>
+                        <b>Age:  </b>
+                        <?php
+                        print($age);
+                        ?>
+                    </p>
+                    <p>
+                        <b>Gender:  </b>
+                        <?php
+                        print($gender);
+                        ?>
+                    </p>
+                    <p>
+                        <b>Kingdom:  </b>
+                        <?php
+                        print($kingdom);
+                        ?>
+                    </p>
                 </div>
                 <div class="col-md-5">
-                    <?php
-                   //print character info here
-                    ?>
+                    <h3>
+                        <?php
+                        print($name);
+                        ?>
+                    </h3>
                 </div>
                 <div class="col-md-4">
                     <?php
