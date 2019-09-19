@@ -44,8 +44,8 @@
                             <br>
                             <label for="Gender">Gender:</label>
                             <div id="Gender" class="form-check form-check-inline">
-                                <input type="radio" value="Male" name="gender" class="form-check-input" id="genderM"><label for="genderM">Male</label>  
-                                <input type="radio" value="Female" name="gender" class="form-check-input" id="genderF"><label for="genderF">Female</label>
+                                <input type="radio" value="Male" name="Gender" class="form-check-input" id="genderM"><label for="genderM">Male</label>  
+                                <input type="radio" value="Female" name="Gender" class="form-check-input" id="genderF"><label for="genderF">Female</label>
                             </div>
                             <br>
                             <label for="KingdomName">Kingdom</label>

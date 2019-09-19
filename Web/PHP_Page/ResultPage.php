@@ -6,6 +6,8 @@ $class = $_POST['Class'];
 $age = $_POST['Age'];
 $gender = $_POST['Gender'];
 $kingdom = $_POST['KingdomName'];
+
+$classdata_array = explode("\n", file_get_contents('ClassInfo.txt'));
 ?>
 <html>
     <head>
@@ -31,9 +33,6 @@ $kingdom = $_POST['KingdomName'];
 
     <body>
         <div id="CharacterSheet" class="container">
-            <div class="row">
-                <h3 class="Content">The Brave Adventurer</h3>
-            </div>
             <div class="row">
                  <div class="col-md-3">
                     <p>
@@ -69,14 +68,39 @@ $kingdom = $_POST['KingdomName'];
                 </div>
                 <div class="col-md-5">
                     <h3>
+                        The Brave Adventurer
                         <?php
                         print($name);
                         ?>
                     </h3>
+                    <?php
+
+                    if($class == 'Cleric')
+                    {
+                        print($classdata_array[1]);
+                    }
+                    
+                    if ($class == 'Thief')
+                    {
+                        print($classdata_array[2]);
+                    }
+
+                    if ($class == 'Fighter')
+                    {
+                        print($classdata_array[0]);
+                    }
+
+                    if ($class == 'Magic-User')
+                    {
+                        print($classdata_array[3]);
+                    }
+
+                    ?>
                 </div>
                 <div class="col-md-4">
                     <?php
-                    //print image here
+                        $img = substr($race, 0, 2).substr($class, 0, 2).substr($gender, 0, 2).'.jpg';
+                        print("<img src=\"images/$img\">");
                     ?>
                 </div>
             </div>
