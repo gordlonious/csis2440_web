@@ -34,7 +34,8 @@ $classdata_array = explode("\n", file_get_contents('ClassInfo.txt'));
     <body>
         <div id="CharacterSheet" class="container">
             <div class="row">
-                 <div class="col-md-3">
+                 <div class="col-md-4">
+                    <h4>The Brave Adventurer</h4>
                     <p>
                         <b>Race:  </b>
                         <?php
@@ -66,11 +67,10 @@ $classdata_array = explode("\n", file_get_contents('ClassInfo.txt'));
                         ?>
                     </p>
                 </div>
-                <div class="col-md-5">
+                <div class="col-lg-6">
                     <h3>
-                        The Brave Adventurer
                         <?php
-                        print($name);
+                        print($name.' from '.$kingdom);
                         ?>
                     </h3>
                     <?php
@@ -97,7 +97,7 @@ $classdata_array = explode("\n", file_get_contents('ClassInfo.txt'));
 
                     ?>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md">
                     <?php
                         $img = substr($race, 0, 2).substr($class, 0, 2).substr($gender, 0, 2).'.jpg';
                         print("<img src=\"images/$img\">");
