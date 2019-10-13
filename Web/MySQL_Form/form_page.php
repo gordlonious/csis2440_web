@@ -20,6 +20,15 @@
 
             <label for="pwd">Password</label>
             <input type="password" id="pwd">
+
+            <label for="insert_radio">Add a new database record</label>
+            <input type="radio" name="query_type" id="insert_radio" checked="checked">
+
+            <label for="update_radio">Update an existing database record</label>
+            <input type="radio" name="query_type" id="update_radio">
+
+            <label for="search_radio">Search for an existing database record</label>
+            <input type="radio" name="query_type" id="search_radio">
         </form>
     </body>
 </html>
