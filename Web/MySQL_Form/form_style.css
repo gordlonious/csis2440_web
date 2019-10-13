@@ -1,0 +1,17 @@
+
+form > table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+form > table tr {
+    border: 2px solid black;
+}
+
+.radio_td {
+    text-align: center;
+}
+
+body > h2 {
+   text-align: center; 
+}
