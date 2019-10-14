@@ -31,15 +31,15 @@
                 </tr>
                 <tr>
                     <td><label for="insert_radio">Add a new database record</label></td>
-                    <td class="radio_td"><input type="radio" name="query_type" id="insert_radio" checked="checked"></td>
+                    <td class="radio_td"><input type="radio" name="query_type" value="insert" id="insert_radio" checked="checked"></td>
                 </tr>
                 <tr> 
                     <td><label for="update_radio">Update an existing database record</label></td>
-                    <td class="radio_td"><input type="radio" name="query_type" id="update_radio"></td>
+                    <td class="radio_td"><input type="radio" name="query_type" value="update" id="update_radio"></td>
                 </tr>
                 <tr>
                     <td><label for="search_radio">Search for an existing database record</label></td>
-                    <td class="radio_td"><input type="radio" name="query_type" id="search_radio"></td>
+                    <td class="radio_td"><input type="radio" name="query_type" value="search" id="search_radio"></td>
                 </tr>
                 <tr class="submit_row">
                     <td></td>
