@@ -41,6 +41,10 @@
                     <td><label for="search_radio">Search for an existing database record</label></td>
                     <td class="radio_td"><input type="radio" name="query_type" id="search_radio"></td>
                 </tr>
+                <tr class="submit_row">
+                    <td></td>
+                    <td><input type="submit"></td>
+                </tr>
             </table>
         </form>
     </body>

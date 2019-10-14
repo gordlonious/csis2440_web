@@ -15,3 +15,8 @@ form > table tr {
 body > h2 {
    text-align: center; 
 }
+
+.submit_row {
+    border: none;
+    text-align: center;
+}
