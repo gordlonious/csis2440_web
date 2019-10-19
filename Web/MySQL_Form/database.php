@@ -6,26 +6,34 @@ class Database
     private $username;
     private $pwd;
 
-    __construct($user, $pwdfilepath)
+    function __construct($user, $pwdfilepath)
     {
        $this->username = $user;
        $this->host = '127.0.0.1';
        $this->dbname = 'CSIS2440';
-       getpwd($pwdfilepath);
+       $this->getpwd($pwdfilepath);
     }
 
     private function getpwd($pwdfilepath)
     {
-        $fp = fopen($pwdfilepath, 'rb');
+        try
+        {
+            $fp = fopen($pwdfilepath, 'rb');
 
-        $line = fgets($fp);
+            $line = fgets($fp);
 
-        $this->pwd = trim($line);
+            $this->pwd = trim($line);
 
-        fclose($fp);
+            fclose($fp);
+        }
+        catch (Exception $e)
+        {
+            echo 'Error trying to parse pwd file';
+            throw $e;
+        }
     }
 
-    public getdbconnection()
+    public function getdbconnection()
     {
         $connection = new mysqli($this->host, $this->username, $this->pwd, $this->dbname);
 
@@ -35,6 +43,13 @@ class Database
             return;
         }
 
+        return $connection;
+    }
+
+    public function getinsecureconnection()
+    {
+        echo 'getting insecure connection...<br>';
+        $connection = new mysqli('127.0.0.1', 'root');
         return $connection;
     }
 }

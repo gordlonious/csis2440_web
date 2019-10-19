@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__.'/database.php';
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,9 +16,14 @@
         $password = $_POST['pwd'];
         $query_type = $_POST['query_type'];
 
-        $db = new Database('root', '/var/www/site_credentials/mysql_root_pwd');
+        $pwdfilepath = '/var/www/site_credentials/mysql_root_pwd';
 
-        echo 'database object created';
+        $db = new Database('root', '');
+
+        $connection = $db->getinsecureconnection();
+
+        echo 'connection created';
+
     ?>
     </body>
 </html>
