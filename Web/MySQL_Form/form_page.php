@@ -11,23 +11,23 @@
             <table>
                 <tr>
                     <td><label for="first_name">First Name</label></td>
-                    <td><input type="text" id="first_name"></td>
+                    <td><input type="text" id="first_name" name="first_name"></td>
                 </tr>
                 <tr>
                     <td><label for="last_name">Last Name</label></td>
-                    <td><input type="text" id="last_name"></td>
+                    <td><input type="text" id="last_name"name="last_name"></td>
                 </tr>
                 <tr>
                     <td><label for="birthday">Birthday</label></td>
-                    <td><input type="date" id="birthday"></td>
+                    <td><input type="date" id="birthday" name="birthday"></td>
                 </tr>
                 <tr>
                     <td><label for="email">Email</label></td>
-                    <td><input type="email" id="email"></td>
+                    <td><input type="email" id="email" name="email"></td>
                 </tr>
                 <tr>
                     <td><label for="pwd">Password</label></td>
-                    <td><input type="password" id="pwd"></td>
+                    <td><input type="password" id="pwd" name="pwd"</td>
                 </tr>
                 <tr>
                     <td><label for="insert_radio">Add a new database record</label></td>

@@ -36,5 +36,52 @@ class PlayerDataEditor extends Database
             throw new Exception('failed to create table');
         }
     }
+
+    public function AddNewPlayer($firstName, $lastName, $email, $birthDate, $password)
+    {
+        $sql =
+        "
+        INSERT INTO `CSIS2440`.`Player`
+        (
+            firstName,
+            lastname,
+            email,
+            birthDate,
+            password
+        )
+        VALUES
+        (
+            ?,
+            ?,
+            ?,
+            ?,
+            ?
+        )
+        ";
+
+        $statement = $this->mysqli->prepare($sql);
+
+        if (!$statement)
+        {
+            echo 'failed to prepare sql statement';
+            throw new Exception('failed to prepare sql statement');
+        }
+        
+        $bindingResult = $statement->bind_param("sssss", $firstName, $lastName, $email, $birthDate, $password);
+
+        if (!$bindingResult)
+        {
+            echo 'failed to bind sql parameters';
+            throw new Exception('failed to bind sql parameters');
+        }
+
+        $sqlResult = $statement->execute();
+
+        if (!sqlResult)
+        {
+            echo 'failed to execute parameterized query';
+            throw new Exception('failed to execute parameterized query');
+        }
+    }
 }
 ?>
