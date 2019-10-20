@@ -20,7 +20,7 @@ require_once __DIR__.'/playerdataeditor.php';
 
         $playerEditor = new PlayerDataEditor('web', $pwdfilepath);
 
-        $connection = $playerEditor->getdbconnection();
+        echo 'editor created';
 
     ?>
     </body>
