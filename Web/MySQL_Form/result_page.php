@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/database.php';
+require_once __DIR__.'/playerdataeditor.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,13 +16,11 @@ require_once __DIR__.'/database.php';
         $password = $_POST['pwd'];
         $query_type = $_POST['query_type'];
 
-        $pwdfilepath = '/var/www/site_credentials/mysql_root_pwd';
+        $pwdfilepath = '/var/www/site_credentials/mysql_web_pwd';
 
-        $db = new Database('root', '');
+        $playerEditor = new PlayerDataEditor('web', $pwdfilepath);
 
-        $connection = $db->getinsecureconnection();
-
-        echo 'connection created';
+        $connection = $playerEditor->getdbconnection();
 
     ?>
     </body>
