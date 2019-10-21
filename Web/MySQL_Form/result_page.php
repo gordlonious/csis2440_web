@@ -17,13 +17,6 @@ require_once __DIR__.'/postvalidation.php';
         $password = $_POST['pwd'];
         $query_type = $_POST['query_type'];
 
-        // format validate post data
-        //     sanitization should be mostly unnecessary because queries are parameterized
-        if (!PostValidation::year_dash($birthday))
-        {
-            echo 'post validation failed, i need to figure out how to format dates into the yyyy-mm-dd format (for the MySQL DATE type)';
-            throw new Exception('birthday was posted using an unhandled format');
-        }
 
         $pwdfilepath = '/var/www/site_credentials/mysql_web_pwd';
 
@@ -31,6 +24,12 @@ require_once __DIR__.'/postvalidation.php';
 
         if ($query_type == 'insert')
         {
+            if (!PostValidation::year_dash($birthday))
+            {
+                echo 'post validation failed, i need to figure out how to format dates into the yyyy-mm-dd format (for the MySQL DATE type)';
+                throw new Exception('birthday was posted using an unhandled format');
+            }
+
             $saltedHash = password_hash($password, PASSWORD_DEFAULT);
 
             $playerEditor->add_new_player($firstname, $lastname, $email, $birthday, $saltedHash);
@@ -47,6 +46,12 @@ HEREDOC;
 
         if ($query_type == 'update')
         {
+            if (!PostValidation::year_dash($birthday))
+            {
+                echo 'post validation failed, i need to figure out how to format dates into the yyyy-mm-dd format (for the MySQL DATE type)';
+                throw new Exception('birthday was posted using an unhandled format');
+            }
+
             // I'm not sure how to make this both secure and useful... get the hash based on birthday and email?
             $hashToVerify = $playerEditor->get_hash($birthday, $email);
 
@@ -73,6 +78,8 @@ HEREDOC;
         if ($query_type == 'search')
         {
             echo 'searching...';
+            $playerEditor->search_player($lastname);
+            echo 'searched!';
         }
     ?>
     </body>

@@ -77,7 +77,7 @@ class PlayerDataEditor extends Database
 
         $sqlResult = $statement->execute();
 
-        if (!sqlResult)
+        if (!$sqlResult)
         {
             echo 'failed to execute parameterized query';
             throw new Exception('failed to execute parameterized query');
@@ -153,7 +153,7 @@ class PlayerDataEditor extends Database
 
         $sqlResult = $statement->execute();
 
-        if (!sqlResult)
+        if (!$sqlResult)
         {
             echo 'failed to execute parameterized query';
             throw new Exception('failed to execute parameterized query');
@@ -184,6 +184,73 @@ class PlayerDataEditor extends Database
         }
 
         return $pwd;
+    }
+
+    public function search_player($lastName)
+    {
+        $sql =
+        "
+        SELECT
+            firstName,
+            lastName,
+            email,
+            birthDate
+        FROM `CSIS2440`.`Player`
+        WHERE lastName = ?
+        ";
+
+        $statement = $this->mysqli->prepare($sql);
+
+        if (!$statement)
+        {
+            echo 'failed to prepare sql statement';
+            throw new Exception('failed to prepare sql statement');
+        }
+        
+        $parameterBindingResult = $statement->bind_param("s", $lastName); 
+
+        if (!$parameterBindingResult)
+        {
+            echo 'failed to bind sql parameters';
+            throw new Exception('failed to bind sql parameters');
+        }
+
+        $sqlResult = $statement->execute();
+
+        if (!$sqlResult)
+        {
+            echo 'failed to execute parameterized query';
+            throw new Exception('failed to execute parameterized query');
+        }
+
+        $fname;
+        $lname;
+        $email;
+        $bday;
+
+        $sqlSelectResult = $statement->bind_result($fname, $lname, $email, $bday);
+
+        if (!$sqlSelectResult)
+        {
+            echo 'failed to bind result to select column';
+            throw new Exception('failed to bind result to select column');
+        }
+
+        $fetchResult = $statement->fetch();
+
+        if (!isset($fetchResult))
+        {
+            // no search results
+            return false;
+        }
+
+        if (!$fetchResult)
+        {
+            echo 'There was an error fetching the select values.';
+            throw new Exception('There was an error fetching the select values');
+        }
+        
+        return array($fname, $lname, $email, $bday);
     }
 }
 ?>
