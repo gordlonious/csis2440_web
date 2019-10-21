@@ -120,6 +120,8 @@ class PlayerDataEditor extends Database
             echo 'failed to execute parameterized query';
             throw new Exception('failed to execute parameterized query');
         }
+
+        // TODO: return a 'whether or not anything actually got updated' flag
     }
 
     public function get_hash($birthday, $email)
