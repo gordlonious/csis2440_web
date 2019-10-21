@@ -58,9 +58,21 @@ HEREDOC;
                 throw new Exception('Some of the information entered was incorrect');
             }
 
-            echo 'updating...'.'<br>';
             $playerEditor->update_existing_player($firstname, $lastname, $birthday, $hashToVerify);
-            echo 'updated!';
+
+            echo <<<HEREDOC
+<h2>Nice! You've Successfully Updated The Matching Player.</h2>
+<p>To review, here is what your updated player looks like. Remember, you can always rename the player.</p>
+<p><b>First Name: </b>$firstname</p>
+<p><b>Last Name: </b>$lastname</p>
+<p><b>E-mail: </b>$email</p>
+<p><b>Birthday: </b>$birthday</p>
+HEREDOC;
+        }
+
+        if ($query_type == 'search')
+        {
+            echo 'searching...';
         }
     ?>
     </body>
