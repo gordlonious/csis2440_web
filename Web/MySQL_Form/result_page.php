@@ -36,7 +36,7 @@ require_once __DIR__.'/postvalidation.php';
 
             echo <<<HEREDOC
 <h2>Nice! You've Successfully Added A New Player.</h2>
-<p>To review, here is what your new player looks like. Remember, you can always go back and edit this information.</p>
+<p>To review, here is what your new player looks like. Remember, you can always rename the player.</p>
 <p><b>First Name: </b>$firstname</p>
 <p><b>Last Name: </b>$lastname</p>
 <p><b>E-mail: </b>$email</p>
@@ -77,9 +77,42 @@ HEREDOC;
 
         if ($query_type == 'search')
         {
-            echo 'searching...';
-            $playerEditor->search_player($lastname);
-            echo 'searched!';
+            if (!isset($lastname) && !isset($firstname))
+            {
+                echo '<h2>To search, you must either specify a first name or a last name</h2>';
+                throw new Exception('user specified unhandled search data');
+            }
+            
+            $searchData;
+            
+            if (!empty($lastname)) // opt to search by last name when possible
+            {
+                $searchData = $playerEditor->search_player_by_last_name($lastname);
+            }
+            else
+            {
+                $searchData = $playerEditor->search_player_by_first_name($firstname);
+            }
+
+            $searchfname = $searchData[0];
+            $searchlname = $searchData[1];
+            $searchemail = $searchData[2];
+            $searchbday = $searchData[3];
+
+            if (empty($searchfname) && empty($searchlname))
+            {
+                echo '<h2>Sorry, it does not look like your search returned any results!</h2>';
+                exit;
+            }
+
+            echo <<<HEREDOC
+<h2>Nice! You've Found Some Results!</h2>
+<p><b>First Name: </b>$searchfname</p>
+<p><b>Last Name: </b>$searchlname</p>
+<p><b>E-mail: </b>$searchemail</p>
+<p><b>Birthday: </b>$searchbday</p>
+<p>* only the first match is being displayed</p>
+HEREDOC;
         }
     ?>
     </body>
