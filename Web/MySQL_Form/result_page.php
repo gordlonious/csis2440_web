@@ -16,7 +16,6 @@ require_once __DIR__.'/postvalidation.php';
         $email = $_POST['email'];
         $password = $_POST['pwd'];
         $query_type = $_POST['query_type'];
-        echo $birthday.'<br>';
 
         // format validate post data
         //     sanitization should be mostly unnecessary because queries are parameterized
@@ -34,9 +33,16 @@ require_once __DIR__.'/postvalidation.php';
 
         if ($query_type == 'insert')
         {
-            echo 'inserting...'.'<br>';
             $playerEditor->AddNewPlayer($firstname, $lastname, $email, $birthday, $saltedHash);
-            echo 'inserted!';
+
+            echo <<<HEREDOC
+<h2>Nice! You've Successfully Added A New Player.</h2>
+<p>To review, here is what your new player looks like. Remember, you can always go back and edit this information.</p>
+<p><b>First Name: </b>$firstname</p>
+<p><b>Last Name: </b>$lastname</p>
+<p><b>E-mail: </b>$email</p>
+<p><b>Birthday: </b>$birthday</p>
+HEREDOC;
         }
     ?>
     </body>
