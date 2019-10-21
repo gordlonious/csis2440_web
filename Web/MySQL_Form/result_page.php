@@ -25,15 +25,15 @@ require_once __DIR__.'/postvalidation.php';
             throw new Exception('birthday was posted using an unhandled format');
         }
 
-        $saltedHash = password_hash($password, PASSWORD_DEFAULT);
-
         $pwdfilepath = '/var/www/site_credentials/mysql_web_pwd';
 
         $playerEditor = new PlayerDataEditor('web', $pwdfilepath);
 
         if ($query_type == 'insert')
         {
-            $playerEditor->AddNewPlayer($firstname, $lastname, $email, $birthday, $saltedHash);
+            $saltedHash = password_hash($password, PASSWORD_DEFAULT);
+
+            $playerEditor->add_new_player($firstname, $lastname, $email, $birthday, $saltedHash);
 
             echo <<<HEREDOC
 <h2>Nice! You've Successfully Added A New Player.</h2>
@@ -43,6 +43,24 @@ require_once __DIR__.'/postvalidation.php';
 <p><b>E-mail: </b>$email</p>
 <p><b>Birthday: </b>$birthday</p>
 HEREDOC;
+        }
+
+        if ($query_type == 'update')
+        {
+            // I'm not sure how to make this both secure and useful... get the hash based on birthday and email?
+            $hashToVerify = $playerEditor->get_hash($birthday, $email);
+
+            $passwordMatch = password_verify($password, $hashToVerify);
+
+            if (!passwordMatch)
+            {
+                echo '<h2>Some of the information you entered was incorrect. Remember, you must provide the original birthday, email, and password for the player.</h2>';
+                throw new Exception('Some of the information entered was incorrect');
+            }
+
+            echo 'updating...'.'<br>';
+            $playerEditor->update_existing_player($firstname, $lastname, $birthday, $hashToVerify);
+            echo 'updated!';
         }
     ?>
     </body>
