@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__.'/playerdataeditor.php';
-require_once __DIR__.'/postvalidation.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,12 +23,6 @@ require_once __DIR__.'/postvalidation.php';
 
         if ($query_type == 'insert')
         {
-            if (!PostValidation::year_dash($birthday))
-            {
-                echo 'post validation failed, i need to figure out how to format dates into the yyyy-mm-dd format (for the MySQL DATE type)';
-                throw new Exception('birthday was posted using an unhandled format');
-            }
-
             $saltedHash = password_hash($password, PASSWORD_DEFAULT);
 
             $playerEditor->add_new_player($firstname, $lastname, $email, $birthday, $saltedHash);
@@ -45,12 +38,6 @@ HEREDOC;
 
         if ($query_type == 'update')
         {
-            if (!PostValidation::year_dash($birthday))
-            {
-                echo 'post validation failed, i need to figure out how to format dates into the yyyy-mm-dd format (for the MySQL DATE type)';
-                throw new Exception('birthday was posted using an unhandled format');
-            }
-
             // I'm not sure how to make this both secure and useful... get the hash based on birthday and email?
             $hashToVerify = $playerEditor->get_hash($birthday, $email);
 
@@ -108,7 +95,6 @@ HEREDOC;
             {
                 echo <<<HEREDOC
 <h2>Nice! This player matched your search!</h2>
-<p>To review, here is what your updated player looks like. Remember, you can always rename the player.</p>
 <p><b>First Name: </b>{$item[0]}</p>
 <p><b>Last Name: </b>{$item[1]}</p>
 <p><b>E-mail: </b>{$item[2]}</p>
