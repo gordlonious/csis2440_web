@@ -20,13 +20,13 @@
                             <a href="../CE01/index.php">Class Exercise #1</a>
                         </li>
                         <li>
-                            <a href="link to assignment 1">Assignment 1</a>
+                            <a href="../PHP_Page/FormPage.php">Assignment 1</a>
                         </li>
                         <li>
-                            <a href="link to assignment 2">Assignment 2</a>
+                            <a href="../MySQL_Form/form_page.php">Assignment 2</a>
                         </li>
                         <li>
-                            <a href="link to assignment 2">Assignment 3</a>
+                            <a href="link to assignment 3">Assignment 3</a>
                         </li>
                     </ul>
                 </nav>

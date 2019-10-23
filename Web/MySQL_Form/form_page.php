@@ -47,5 +47,9 @@
                 </tr>
             </table>
         </form>
+        <ul class="helptext">
+            <li>You may only update first and last name fields to a new value. Please provide the original birthdate, email, and password for verification.</li>
+            <br>
+            <li>Searching is based on first and last name.</li>
     </body>
 </html>

@@ -20,3 +20,7 @@ body > h2 {
     border: none;
     text-align: center;
 }
+
+.helptext {
+    text-align: center;
+}
