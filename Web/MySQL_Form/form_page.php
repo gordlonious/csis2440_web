@@ -48,12 +48,41 @@
                 return emailTest;
             }
 
+            function formIsComplete()
+            {
+                let firstNameInput = document.getElementById("first_name");
+                let lastNameInput = document.getElementById("last_name");
+                let emailInput = document.getElementById("email");
+                let birthdayInput = document.getElementById("birthday");
+                let passwordInput = document.getElementById("pwd");
+
+                if (firstNameInput.value == "" || lastNameInput.value == "" || emailInput.value == "" || birthdayInput.value == "" || passwordInput == "")
+                {
+                    alert("To update or create a player record the form must be 100% complete.");
+                    return false;
+                }
+
+                return true;
+            }
+
             function submitValidPlayerForm()
             {
+                let updateInput = document.getElementById("update_radio");
+                let insertInput = document.getElementById("insert_radio");
+
+                if (updateInput.checked || insertInput.checked)
+                {
+                    if (!formIsComplete())
+                    {
+                        return false;  
+                    }
+                }
+
                 if (namesAreValid() && emailIsValid())
                 {
                     let playerForm = document.getElementById("playerForm");
                     playerForm.submit();
+                    return true;
                 }
             }
         </script>
