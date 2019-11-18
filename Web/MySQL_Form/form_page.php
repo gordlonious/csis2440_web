@@ -5,7 +5,7 @@
         <title>MySQL Form</title>
         <link rel="stylesheet" type="text/css" href="form_style.css">
         <script>
-            function validateFirstLast()
+            function namesAreValid()
             {
                 let firstNameInput = document.getElementById("first_name");
                 let lastNameInput = document.getElementById("last_name");
@@ -31,11 +31,26 @@
                 return true;
             }
 
+            function emailIsValid()
+            {
+                let emailInput = document.getElementById("email");
+
+                // I'll use a simple regex pattern for the email, but I could use something more tested like the one at emailregex.com (which is super complex).
+                let emailPattern = /\w+@\w+\./; // 1+ alphanumerics, then an @ symbol, then 1+ alphanumerics, then a . character.
+
+                let emailTest = emailPattern.test(emailInput.value);
+
+                if (!emailTest)
+                {
+                    alert("The email you provided was not in the right format. Sorry, please correct it or try another one.");
+                }
+
+                return emailTest;
+            }
+
             function submitValidPlayerForm()
             {
-                let namesAreValid = validateFirstLast();
-
-                if (namesAreValid)
+                if (namesAreValid() && emailIsValid())
                 {
                     let playerForm = document.getElementById("playerForm");
                     playerForm.submit();
