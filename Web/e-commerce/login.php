@@ -12,14 +12,45 @@
 
             function submitSignup()
             {
-                let signupForm = document.getElementById('signup_form');
-                signupForm.submit();
+                let xhr = new XMLHttpRequest();
+
+                let xml = "<signup><uname>" + document.getElementById('new_uname_input').value + "</uname><pwd>" + document.getElementById('new_pwd_input').value + "</pwd></signup>";
+
+                xhr.open('POST', 'signup.php');
+
+                xhr.setRequestHeader('Content-Type', 'text/xml');
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4)
+                    {
+                        if (xhr.status == 200)
+                        {
+                            alert('Your signup has completed successfully! You can go ahead and login.');
+                            hideSignup();
+                        }
+                        else
+                        {
+                            alert('Sorry, something went wrong with the signup process. Please try again later or contact a system administrator.');
+                        }
+                    }
+                    else
+                    {
+                        console.log('signup incomplete');
+                    }
+                }
+                xhr.send(xml);
             }
 
             function revealSignup()
             {
                 let signupForm = document.getElementById('signup_form');
                 signupForm.removeAttribute('hidden');
+            }
+
+            function hideSignup()
+            {
+                let signupForm = document.getElementById('signup_form');
+                signupForm.hidden = true;
             }
         </script>
         <style>
@@ -66,9 +97,9 @@
         <p>Don't have an account yet? <button onclick="revealSignup()">Click here to signup!</button></p>
         <form action="login.php" id="signup_form" hidden>
             <label for="new_uname_input">New Username:</label>
-            <input type="text" name="new_uname_input"/>
+            <input type="text" id="new_uname_input"/>
             <label for="new_pwd_input">New Password:</label>
-            <input type="password" name="new_pwd_input"/>
+            <input type="password" id="new_pwd_input"/>
             <input type="button" onclick="submitSignup()" value="Signup"/>
         </form>
     </body>
