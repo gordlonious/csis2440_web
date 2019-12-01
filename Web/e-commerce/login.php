@@ -35,7 +35,7 @@
                     }
                     else
                     {
-                        console.log('signup incomplete');
+                        //console.log('signup incomplete');
                     }
                 }
                 xhr.send(xml);

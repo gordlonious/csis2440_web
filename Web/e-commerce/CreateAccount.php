@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__).'../MySQL_Form/database.php';
+require_once '../MySQL_Form/database.php';
 
 class CreateAccount extends Database
 {
@@ -9,7 +9,7 @@ class CreateAccount extends Database
     {
         parent::__construct($user, $pwdfilepath);
 
-        $mysql = parent::getdbconnection();
+        $this->mysql = parent::getdbconnection();
 
         $this->create_commerce_user_table();
     }
@@ -20,7 +20,7 @@ class CreateAccount extends Database
         "
             CREATE TABLE IF NOT EXISTS `CSIS2440`.`CommerceUser`
             (
-                commerceUserId INT,
+                commerceUserId INT NOT NULL AUTO_INCREMENT,
                 commerceUsername VARCHAR(255),
                 commercePwdHash CHAR(255),
                 PRIMARY KEY (commerceUserId)
