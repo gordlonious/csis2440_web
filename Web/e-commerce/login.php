@@ -56,7 +56,7 @@
                         }
                         else
                         {
-                            alert('Sorry, something went wrong with the signup process. Please try again later or contact a system administrator.');
+                            alert('Sorry, something went wrong with the signup process. The username you provided may already be in use.');
                         }
                     }
                     else

@@ -21,7 +21,7 @@ class CreateAccount extends Database
             CREATE TABLE IF NOT EXISTS `CSIS2440`.`CommerceUser`
             (
                 commerceUserId INT NOT NULL AUTO_INCREMENT,
-                commerceUsername VARCHAR(255),
+                commerceUsername VARCHAR(255) UNIQUE,
                 commercePwdHash CHAR(255),
                 PRIMARY KEY (commerceUserId)
             );
@@ -72,6 +72,8 @@ class CreateAccount extends Database
         if (!$executionResult)
         {
             echo "ERROR WITH CREATE ACCOUNT INSERT";
+            http_response_code(500);
+            // TODO: add method that checks if a username is already in use, use client side code to alert the user of that case specifically.
         }
     }
 }
