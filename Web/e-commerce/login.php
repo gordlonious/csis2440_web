@@ -6,8 +6,34 @@
         <script>
             function submitLogin()
             {
-                let loginForm = document.getElementById('login_form');
-                loginForm.submit();
+                let xhr = new XMLHttpRequest();
+
+                let xml = "<login><uname>" + document.getElementById('uname_input').value + "</uname><pwd>" + document.getElementById('pwd_input').value + "</pwd></login>";
+
+                xhr.open('POST', 'verify_login.php');
+
+                xhr.setRequestHeader('Content-Type', 'text/xml');
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4)
+                    {
+                        if (xhr.status == 200)
+                        {
+                            alert('You have successfully logged in! Feel free to browse our catalogue.');
+                            window.location.href = 'catalogue.php';
+                        }
+                        else
+                        {
+                            alert('Something went wrong with the login request. The username and password you provided may not have matched anything in our system. Try again or make a new account!');
+                        }
+                    }
+                    else
+                    {
+                        //console.log('login incomplete');
+                    }
+                }
+
+                xhr.send(xml);
             }
 
             function submitSignup()
@@ -87,7 +113,7 @@
 	</head>
     <body>
         <h2>The Anvil N' Stuff Store</h2>
-        <form action="catalogue.php" id="login_form">
+        <form id="login_form">
             <label for="uname_input">Username:</label>
             <input type="text" id="uname_input"/>
             <label for="pwd_input">Password:</label>
@@ -95,7 +121,7 @@
             <input type="button" onclick="submitLogin()" value="Login"/>
         </form>
         <p>Don't have an account yet? <button onclick="revealSignup()">Click here to signup!</button></p>
-        <form action="login.php" id="signup_form" hidden>
+        <form id="signup_form" hidden>
             <label for="new_uname_input">New Username:</label>
             <input type="text" id="new_uname_input"/>
             <label for="new_pwd_input">New Password:</label>
