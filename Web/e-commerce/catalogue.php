@@ -17,9 +17,11 @@
                     {
                         let productDetails = xhr.responseText.split(',');
 
-                        let descNode = document.getElementById('product_description');
-                        let priceNode = document.getElementById('product_price');
+                        let descNode = document.querySelector('#product_details > p:first-Child');
+                        let priceNode = document.querySelector('#product_details > p:nth-child(2)');
+                        let productImgNode = document.querySelector('#product_details > img');
 
+                        productImgNode.src =  "productImages/" + el.id + ".jpg";
                         descNode.innerHTML = productDetails[1];
                         priceNode.innerHTML = productDetails[2];
                     }
@@ -78,8 +80,9 @@
                 ?>
             </select>
             <div id="product_details">
-                <p id="product_description"></p>
-                <p id="product_price"></p>
+                <p></p>
+                <p></p>
+                <img>
             </div>
         </div>
         <div id="view_cart">
