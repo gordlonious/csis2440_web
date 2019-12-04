@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -19,6 +22,9 @@
                     {
                         if (xhr.status == 200)
                         {
+                            <?php
+                            $_SESSION['isLoggedIn'] = 1;
+                            ?>
                             alert('You have successfully logged in! Feel free to browse our catalogue.');
                             window.location.href = 'catalogue.php';
                         }

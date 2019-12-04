@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!$_SESSION['isLoggedIn'])
+{
+    exit("Sorry, you're not authorized to use this page.");
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
