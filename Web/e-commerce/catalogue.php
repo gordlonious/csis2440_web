@@ -1,8 +1,17 @@
 <?php
 session_start();
+
 if (!$_SESSION['isLoggedIn'])
 {
     exit("Sorry, you're not authorized to use this page.");
+}
+
+if (isset($_GET['cartAction']))
+{
+    if ($_GET['cartAction'] == 'add')
+    {
+        $_SESSION['cart'][$_GET['productId']]++;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -13,6 +22,8 @@ if (!$_SESSION['isLoggedIn'])
         <script type="text/javascript">
         function viewProductDetail(el)
         {
+            el.setAttribute('selected', true);
+
             let xhr = new XMLHttpRequest();
 
             xhr.open('GET', 'get_product_details.php/?productId=' + el.id);
@@ -44,6 +55,21 @@ if (!$_SESSION['isLoggedIn'])
             }
 
             xhr.send();
+        }
+
+        function addToCart()
+        {
+            let productId = document.querySelector("#product_select > option[selected='true']").id;
+
+            let actionString = 'catalogue.php/?productId=' + productId + '&cartAction=add';
+
+            let productIdInput = document.querySelector("#addToCartForm > input:first-child");
+            productIdInput.setAttribute('value', productId);
+
+            let cartActionInput = document.querySelector("#addToCartForm > input:nth-child(2)");
+            cartActionInput.setAttribute('value', 'add');
+
+            addToCartForm.submit();
         }
         </script>
     </head>
@@ -91,8 +117,51 @@ if (!$_SESSION['isLoggedIn'])
                 <p></p>
                 <img>
             </div>
+            <form id="addToCartForm" action="catalogue.php" method="get">
+                <input type="hidden" name="productId">
+                <input type="hidden" name="cartAction">
+                <button type="button" onclick="addToCart()">Add to Cart</button>
+            </form>
         </div>
+        <hr>
         <div id="view_cart">
+            <table>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Line Cost</th>
+                <?php
+                $pwdfilepath = '/var/www/site_credentials/mysql_web_pwd';
+                $db = new Database('web', $pwdfilepath);
+                if (isset($_SESSION['cart']))
+                {
+                    $con = $db->getdbconnection();
+
+                    foreach ($_SESSION['cart'] as $productId => $quantity)
+                    {
+                        $sql = "SELECT `name`, `price` FROM `CSIS2440`.`Product` WHERE productId = $productId";
+
+                        $sqlResult = $con->query($sql);
+
+                        $row = $sqlResult->fetch_assoc();
+
+                        $name = $row['name'];
+
+                        $price = $row['price'];
+                        
+                        $line_cost = $quantity * $price;
+
+                        echo "<tr><td>$name</td><td>$price</td><td>$quantity</td><td>$$line_cost</td></tr>";
+                    }
+
+                    $con->close();
+                }
+                else
+                {
+                    echo "<h4>You have no items in your cart</h4>";
+                }
+                ?>
+            </table>
         </div>
     </body>
 </html>
