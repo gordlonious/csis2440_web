@@ -86,6 +86,16 @@ if (isset($_GET['cartAction']))
 
             addToCartForm.submit();
         }
+
+        (function selectProductOnLoad() {
+
+            window.addEventListener('load', () =>
+            {
+                let firstOption = document.querySelector('#product_select > option:first-child');
+                viewProductDetail(firstOption);
+            });
+            // how do I default to selecting the user's previous option? use session?
+        })();
         </script>
     </head>
     <body>
