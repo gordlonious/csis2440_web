@@ -22,6 +22,11 @@ if (isset($_GET['cartAction']))
             unset($_SESSION['cart'][$_GET['productId']]);
         }
     }
+
+    if ($_GET['cartAction'] == 'empty')
+    {
+        unset($_SESSION['cart']);
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -173,7 +178,10 @@ if (isset($_GET['cartAction']))
                 }
                 ?>
             </table>
-            <button type='button'>Empty Cart</button>
+            <form method='get'>
+                <input type='hidden' name='cartAction' value='empty'>
+                <button>Empty Cart</button>
+            </form>
         </div>
     </body>
 </html>
