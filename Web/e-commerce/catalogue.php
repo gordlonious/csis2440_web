@@ -141,11 +141,13 @@ if (isset($_GET['cartAction']))
         <hr>
         <div id="view_cart">
             <table>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Line Cost</th>
-                <th>Action</th>
+                <thead>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Line Cost</th>
+                    <th>Action</th>
+                </thead>
                 <?php
                 $pwdfilepath = '/var/www/site_credentials/mysql_web_pwd';
                 $db = new Database('web', $pwdfilepath);
@@ -167,7 +169,7 @@ if (isset($_GET['cartAction']))
                         
                         $line_cost = $quantity * $price;
 
-                        echo "<tr><td>$name</td><td>$price</td><td>$quantity</td><td>$$line_cost</td><td class='cart_action'><form method='get' class='$productId'><input type='hidden' name='productId' value='$productId'><input type='hidden' name='cartAction' value='remove'><button type='submit' class='$productId'>Remove Item</button></form></td></tr>";
+                        echo "<tbody><tr><td>$name</td><td>$price</td><td>$quantity</td><td>$$line_cost</td><td class='cart_action' style='border: none'><form method='get' class='$productId'><input type='hidden' name='productId' value='$productId'><input type='hidden' name='cartAction' value='remove'><button type='submit' class='$productId'>Remove Item</button></form></td></tr></tbody>";
                     }
 
                     $con->close();
@@ -180,8 +182,38 @@ if (isset($_GET['cartAction']))
             </table>
             <form method='get'>
                 <input type='hidden' name='cartAction' value='empty'>
-                <button>Empty Cart</button>
+                <button id='empty_cart_button'>Empty Cart</button>
             </form>
+            <p id="grand_total">
+                Grand Total: 
+                <?php
+                $pwdfilepath = '/var/www/site_credentials/mysql_web_pwd';
+                $db = new Database('web', $pwdfilepath);
+                if (isset($_SESSION['cart']))
+                {
+                    $con = $db->getdbconnection();
+
+                    foreach ($_SESSION['cart'] as $productId => $quantity)
+                    {
+                        $sql = "SELECT `price` FROM `CSIS2440`.`Product` WHERE productId = $productId";
+
+                        $sqlResult = $con->query($sql);
+
+                        $row = $sqlResult->fetch_assoc();
+
+                        $price = $row['price'];
+
+                        $total += $price * $quantity;
+                    }
+
+                    echo "$$total";
+                }
+                else
+                {
+                    echo "$0.00";
+                }
+                ?>
+            </p>
         </div>
     </body>
 </html>
