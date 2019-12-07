@@ -12,6 +12,16 @@ if (isset($_GET['cartAction']))
     {
         $_SESSION['cart'][$_GET['productId']]++;
     }
+
+    if ($_GET['cartAction'] == 'remove')
+    {
+        $_SESSION['cart'][$_GET['productId']]--;
+
+        if ($_SESSION['cart'][$_GET['productId']] <= 0)
+        {
+            unset($_SESSION['cart'][$_GET['productId']]);
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -130,6 +140,7 @@ if (isset($_GET['cartAction']))
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Line Cost</th>
+                <th>Action</th>
                 <?php
                 $pwdfilepath = '/var/www/site_credentials/mysql_web_pwd';
                 $db = new Database('web', $pwdfilepath);
@@ -151,7 +162,7 @@ if (isset($_GET['cartAction']))
                         
                         $line_cost = $quantity * $price;
 
-                        echo "<tr><td>$name</td><td>$price</td><td>$quantity</td><td>$$line_cost</td></tr>";
+                        echo "<tr><td>$name</td><td>$price</td><td>$quantity</td><td>$$line_cost</td><td class='cart_action'><form method='get' class='$productId'><input type='hidden' name='productId' value='$productId'><input type='hidden' name='cartAction' value='remove'><button type='submit' class='$productId'>Remove Item</button></form></td></tr>";
                     }
 
                     $con->close();
@@ -162,6 +173,7 @@ if (isset($_GET['cartAction']))
                 }
                 ?>
             </table>
+            <button type='button'>Empty Cart</button>
         </div>
     </body>
 </html>
