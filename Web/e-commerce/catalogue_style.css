@@ -39,3 +39,10 @@ h2 {
 #grand_total {
     text-align: center;
 }
+
+#logout_button {
+    width: 120px;
+    height: 50px;
+    position: fixed;
+    left: 80%;
+}

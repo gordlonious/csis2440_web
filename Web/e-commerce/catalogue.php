@@ -92,6 +92,23 @@ if (isset($_GET['cartAction']))
             addToCartForm.submit();
         }
 
+        function logout()
+        {
+            let xhr = new XMLHttpRequest();
+
+            xhr.open('POST', 'logout.php');
+
+            xhr.onreadystatechange = function()
+            {
+                if (xhr.readyState == 4)
+                {
+                    window.location.replace('login.php');
+                }
+            }
+
+            xhr.send();
+        }
+
         (function selectProductOnLoad() {
 
             window.addEventListener('load', () =>
@@ -109,6 +126,7 @@ if (isset($_GET['cartAction']))
             <a href="../PHP_Page/FormPage.php">Character Creator</a>
             <a href="../MySQL_Form/form_page.php">Player Data Manager</a>
         </nav>
+        <button id="logout_button" type="button" onclick="logout()">Logout</button>
         <h2>The Anvil N' Stuff Catalogue</h2>
         <div class="view_products">
             <label for="product_select">Select a product. View the details. Then add it to your cart!</label>
