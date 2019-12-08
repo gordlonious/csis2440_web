@@ -37,7 +37,12 @@ if (isset($_GET['cartAction']))
         <script type="text/javascript">
         function viewProductDetail(el)
         {
-            el.setAttribute('selected', true);
+            let options = document.querySelectorAll('#product_select > option');
+
+            options.forEach(option => { option.setAttribute('selected', false); }); // make drop down select disallow multi-select scenarios
+
+            el.setAttribute('selected', true); // mark the one they picked as selected
+            document.getElementById("product_select").value = el.value;
 
             let xhr = new XMLHttpRequest();
 

@@ -26,7 +26,14 @@ if (!$stmnt)
     http_response_code(500);
 }
 
-$bindParamResult = $stmnt->bind_param("s", $xml->uname);
+if (isset($_SERVER['PHP_AUTH_USER']))
+{
+    $bindParamResult = $stmnt->bind_param("s", $_SERVER['PHP_AUTH_USER']);
+}
+else
+{
+    $bindParamResult = $stmnt->bind_param("s", $xml->uname);
+}
 
 if (!$bindParamResult)
 {
@@ -54,9 +61,23 @@ $fetchResult = $stmnt->fetch();
 
 if ($fetchResult)
 {
-    if (!password_verify($xml->pwd, $pwdHashResult))
+    if (isset($_SERVER['PHP_AUTH_PW']))
     {
-        http_response_code(401);
+        if (!password_verify($_SERVER['PHP_AUTH_PW'], $pwdHashResult))
+        {
+            header('HTTP/1.1 401 Unauthorized');
+            header('WWW-Authenticate: Basic realm="Access to e-commerce site required."');
+            http_response_code(401);
+        }
+    }
+    else
+    {
+        if (!password_verify($xml->pwd, $pwdHashResult))
+        {
+            header('HTTP/1.1 401 Unauthorized');
+            header('WWW-Authenticate: Basic realm="Access to e-commerce site required."');
+            http_response_code(401);
+        }
     }
 }
 else
