@@ -31,9 +31,9 @@ body {
 
 .nav_container nav ul {
     width: 300px;
-    height: 900px;
+    height: 1000px;
     text-align: center;
-    line-height: 64px;
+    line-height: 30px;
 }
 
 .nav_container nav ul li {
@@ -55,7 +55,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 40px;
+    max-height: 100px;
     border: 1px solid #6813f0;
     border-radius: 3px;
     box-shadow: 1px 1px grey;

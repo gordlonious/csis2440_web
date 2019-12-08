@@ -24,6 +24,11 @@ h2 {
     margin-right: auto;
 }
 
+#addToCartForm > button {
+    width: 250px;
+    height: 100px;
+}
+
 #empty_cart_button
 {
     display: block;

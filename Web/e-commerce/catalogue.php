@@ -99,6 +99,11 @@ if (isset($_GET['cartAction']))
         </script>
     </head>
     <body>
+        <nav>
+            <a href="../working_website/index.php">Project Introduction</a>
+            <a href="../PHP_Page/FormPage.php">Character Creator</a>
+            <a href="../MySQL_Form/form_page.php">Player Data Manager</a>
+        </nav>
         <h2>The Anvil N' Stuff Catalogue</h2>
         <div class="view_products">
             <label for="product_select">Select a product. View the details. Then add it to your cart!</label>

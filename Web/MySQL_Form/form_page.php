@@ -88,6 +88,11 @@
         </script>
     </head>
     <body>
+        <nav>
+            <a href="../working_website/index.php">Project Introduction</a>
+            <a href="../e-commerce/login.php">The Anvil 'N Stuff Store</a>
+            <a href="../PHP_Page/FormPage.php">Character Creator</a>
+        </nav>
         <h2>Add, Update, or Search for a Player!</h2>
         <form action="result_page.php" method="post" id="playerForm">
             <table>

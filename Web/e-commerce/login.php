@@ -118,6 +118,11 @@ session_start();
         </style>
 	</head>
     <body>
+        <nav>
+            <a href="../working_website/index.php">Project Introduction</a>
+            <a href="../MySQL_Form/form_page.php">Player Data Manager</a>
+            <a href="../PHP_Page/FormPage.php">Character Creator</a>
+        </nav>
         <h2>The Anvil N' Stuff Store</h2>
         <form id="login_form">
             <label for="uname_input">Username:</label>

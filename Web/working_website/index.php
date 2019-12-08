@@ -10,23 +10,20 @@
             <div class="nav_container">
                 <nav>
                     <ul>
-                        <a href="ip address?" id="home">
+                        <a id="home">
                             <img src="home.png">
                         </a>
                         <li>
-                            <a href="ecommerce">E-Commerce</a>
+                            <a href="../e-commerce/login.php">The Anvil 'N Stuff Store</a>
                         </li>
                         <li>
-                            <a href="../CE01/index.php">Class Exercise #1</a>
+                            <a href="../PHP_Page/FormPage.php">Character Creator</a>
                         </li>
                         <li>
-                            <a href="../PHP_Page/FormPage.php">Assignment 1</a>
+                            <a href="../MySQL_Form/form_page.php">Player Data Manager</a>
                         </li>
                         <li>
-                            <a href="../MySQL_Form/form_page.php">Assignment 2</a>
-                        </li>
-                        <li>
-                            <a href="link to assignment 3">Assignment 3</a>
+                            <a href="../../CE13/SearchPlanets.php">Example Exercise: Planet Search</a>
                         </li>
                     </ul>
                 </nav>

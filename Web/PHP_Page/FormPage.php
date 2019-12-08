@@ -10,6 +10,11 @@
         <link href="../../../css/freelancer.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <nav>
+            <a href="../working_website/index.php">Project Introduction</a>
+            <a href="../e-commerce/login.php">The Anvil 'N Stuff Store</a>
+            <a href="../MySQL_Form/form_page.php">The Anvil 'N Stuff Store</a>
+        </nav>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-2"></div>
