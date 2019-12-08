@@ -1,0 +1,13 @@
+nav > a {
+    text-decoration: none;
+    width: 120px;
+    height: 70px;
+    background-color: #FF00FF;
+    color: white;
+    border: 1px solid black;
+}
+
+nav > a:hover {
+    background-color: yellow; 
+    color: black;
+}

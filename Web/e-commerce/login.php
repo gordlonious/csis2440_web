@@ -116,6 +116,7 @@ session_start();
                 border-color: black;
             }
         </style>
+        <link rel="stylesheet" type="text/css" href="../nav_style.css">
 	</head>
     <body>
         <nav>

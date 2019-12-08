@@ -119,6 +119,7 @@ if (isset($_GET['cartAction']))
             // how do I default to selecting the user's previous option? use session?
         })();
         </script>
+        <link rel="stylesheet" type="text/css" href="../nav_style.css">
     </head>
     <body>
         <nav>

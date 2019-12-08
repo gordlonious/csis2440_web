@@ -8,12 +8,13 @@
 
         <!-- Theme CSS -->
         <link href="../../../css/freelancer.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="../nav_style.css">
     </head>
     <body>
         <nav>
             <a href="../working_website/index.php">Project Introduction</a>
             <a href="../e-commerce/login.php">The Anvil 'N Stuff Store</a>
-            <a href="../MySQL_Form/form_page.php">The Anvil 'N Stuff Store</a>
+            <a href="../MySQL_Form/form_page.php">Character Creator</a>
         </nav>
         <div class="container-fluid">
             <div class="row">
